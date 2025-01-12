@@ -15,7 +15,7 @@ def job():
     logging.info('Job executed')
 
 def main():
-    schedule.every(4).seconds.do(job)
+    schedule.every(4).hours.do(job)
 
     schedule.run_all()
 
