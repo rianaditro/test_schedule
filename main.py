@@ -1,21 +1,14 @@
-import logging
+from log_task import logger
 import time
 import schedule
 
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    filename='app.log',
-)
+def job(logger=logger):
+    logger.info("This is a log message")
+    print("This is app is running")
 
-
-def job():
-    print("Executing job")
-    logging.info('Job executed')
-
-def main():
-    schedule.every(4).hours.do(job)
+def main(logger=logger):
+    schedule.every(4).hours.do(job, logger=logger)
 
     schedule.run_all()
 
@@ -26,4 +19,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    logger = logger()
+    job(logger)
+    # main(logger)
